@@ -1,0 +1,152 @@
+1. How do you represent the board?
+
+We use two dimensional vector to represent the board, that is a vector
+with element is another vector. The first vector's size equals the
+board's row number, and the second vector's size equals the board's
+column number. Each position of the board is represented by a
+char. The char's value equals the ship id add '0' to distinct
+different ship.
+
+To record attacks, a similar data structure is used. If the char's
+value equals '.', then the position is not attacked, and if the char's
+value equals 'o', then the position has a missed attack, and if the
+char's value equals 'X', then the position has a hit attack.
+
+
+
+2. How a GoodPlayer place ships and recommend attacks?
+
+For placing a ship, a GoodPlayer randomly select a point where no ship
+occupy, trying place the ship at that position with direction
+HORIZONTAL and VERTICAL, if placed success, then remove all points
+that ship occupy, else select another point to place.
+
+To recommend a attack, a GoodPlayer remembers the attack history.
+First, the Play randomly selects a point that not been attacked, if
+that is a hit attack, then check the point's neighbor if that point
+has not been attacked, the add the neighbor to a point stack. For the
+next attack, if the stack is not empty then, the player pop a point
+from the stack to attack, otherwise it make a attack like before by
+random selecting a point.
+
+
+
+3. Pseudocode: 
+
+- How does a MediocrePlayer place ships?
+
+set current ship id to 0
+repeatedly:
+    set placed point p to (0,0)
+    set placed direction d to HORIZONTAL
+    set backtrack flag to false
+    repeatedly:
+        place current ship at p with diection d
+	if placed success and not backtrack
+	    increment current ship id
+	    break
+	else
+            set backtrack flag to false
+	    if current direction d is HORIZONTAL
+	        set current direction d to VERTICAL
+	    else
+	        if current point p's column not exceed
+		    increment p's column
+		else
+		    if current point p's row not exceed
+		        increment p's row
+		    else
+		        if the number of ships placed success > 0
+			    unplace last placed ship
+			    set current ship id to last placed ship id
+			    set current placed point to last placed ship's position
+			    set current placed direction to last placed ship's direction
+			    set backtrack flag to true
+			else
+			    return false
+return true		    
+
+
+
+- How a MediocrePlayer records attack result:
+
+if shot hits, 
+	mark it in player’s data members
+if not,
+	mark it differently
+
+Switch to state 2 if shot hits but ship was not destroyed
+Switch to state 1 if shot hits and ship was destroyed
+
+
+
+
+— How does a GoodPlayer recommends an attack:
+
+set state to 1
+set points to all points not be occupied
+set stack empty
+if stack is empty
+    randomly select one point p from points
+    remove p from points
+    make a attack at p
+else
+    pop the stack's top p
+    remove p from points
+    make a attack at p
+
+
+
+
+- How a GoodPlayer records Attack Result:
+
+if attack at point p is a hit
+    if the point at p's left has not been attacked
+        push the left of p into stack
+    if the point at p's up has not been attacked
+        push the up of p into stack
+    if the point at p's right has not been attacked
+        push the right of p into stack
+    if the point at p's down has not been attacked
+        push the down of p into stack
+
+
+- How a GoodPlayer adds attack points:
+
+If cell above p is valid add it to the stack
+If cell below p is valid add it to the stack
+If cell to the left of p is valid add it to the stack
+If cell to the right of p is valid add it to the stack
+
+
+- How does Game Play?
+
+the first user places his ships
+if not placed success
+    return nullptr
+the second user places his ships
+if not placed success
+    return nullptr
+
+repeatedly:
+    if any player's ship are all destroyed
+        return the winner player
+    current player make a attack use his method
+    display the attack result
+    switch player's turn
+
+
+
+
+- How does a HumanPlayer place ships?
+
+repeatedly:
+    if all ships displaced
+        return true
+    prompt the player the number of ships not placed
+    prompt the player the lenght of placing ship
+    ask player enter the direction to place ship
+    ask player enter the topmost/leftmost point to place ship
+    if player's input is not valid or cannot place the ship
+        continue
+    
