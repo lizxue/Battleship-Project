@@ -15,19 +15,7 @@ e. A patrol boat which is 2 segments long: PP
 through 9), in which they place their ships. Each ship may be placed horizontally
 or vertically, but not diagonally. No ship may overlap another on the board. Each
 player sees only their own board; they cannot see where their opponent has placed
-their ships. A player's board in a 10x10 game might look like this:
-
-0123456789
-0 ....AAAAA.
-1 .......P..
-2 .......P..
-3 ..........
-4 ...D......
-5 ...D......
-6 ..SD......
-7 ..S.......
-8 ..S...BBBB
-9 ..........
+their ships.
 3. After both players have placed their ships, game play begins. The first player
 picks a row and column coordinate to attack on the opponent’s board and
 announces it to the opponent. The opponent then tells the player whether or not
@@ -39,3 +27,5 @@ battleship!”
 the first player. Attacks alternate between players until one player has sunk all of
 the other player’s ships.
 5. The first player to sink all of their opponent’s ships wins the game.
+
+See spec for more details of the game implementation requirements.
