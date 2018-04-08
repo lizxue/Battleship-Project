@@ -16,6 +16,7 @@ through 9), in which they place their ships. Each ship may be placed horizontall
 or vertically, but not diagonally. No ship may overlap another on the board. Each
 player sees only their own board; they cannot see where their opponent has placed
 their ships. A player's board in a 10x10 game might look like this:
+
 0123456789
 0 ....AAAAA.
 1 .......P..
