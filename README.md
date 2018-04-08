@@ -1,2 +1,2 @@
 # Battleship-Project
-Project for CS32
+Project for CS32 Spring 2017
