@@ -28,4 +28,4 @@ the first player. Attacks alternate between players until one player has sunk al
 the other player’s ships.
 5. The first player to sink all of their opponent’s ships wins the game.
 
-See spec for more details of the game implementation requirements.
+See Proj3_spec for more details of the game implementation requirements.
